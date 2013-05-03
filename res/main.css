@@ -1,0 +1,169 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+	font-size: 100%;
+}
+
+body {
+	min-height: 100%;
+	background: url(bg_pattern.png);
+	font-size: 110%;
+	line-height: 1.5em;
+	font-family: 'PT Sans', Arial;
+}
+
+h1 {
+	font-size: 2em;
+	margin-bottom: 0.7em;
+	line-height: 1.2em;
+}
+
+h2 {
+	font-size: 1.5em;
+	margin-bottom: 0.2em;
+	line-height: 1.2em;
+}
+
+ul, ol {
+	margin: 1em 0 1em 1em;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+#main {
+	width: 48em;
+	margin: 1em auto 1em auto;
+	padding: 1.5em;
+	background: #fff;
+}
+
+button {
+  padding: 0.2em 0.5em;
+  font-family: 'PT Sans', Arial;
+  font-size: 1em;
+}
+
+#startButton, #endButton {
+  margin: 0 auto;
+  display: block;
+}
+
+#test_transcript_output {
+  padding: 1em;
+  border: 1px solid #555;
+  margin: 0.5em 0;
+  height: 1.5em;
+}
+
+#allow_hint_box {
+  display: none;border: 3px dotted red;
+  padding: 0.5em;
+  color: #000;
+  font-weight: 700;
+  text-align: center;
+  background: rgba(220,0,0,0.3);
+}
+
+#error_popup {
+  position: absolute;
+  z-index: 9999;
+  width: 430px;
+  font-size: 1.5em;
+  display: none;
+  left: 50%;
+  top: 50%;
+  margin-top: -200px;
+  margin-left: -200px;
+  border: 5px dotted red;
+}
+
+#error_popup > .error_content {
+  position: relative;
+  padding: 1em;
+  background: #fff;
+  z-index: 9999;
+}
+
+#error_popup:after {
+  position: fixed;
+  display: block;
+  z-index: 999;
+  content: " ";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(100,100,100,0.7);
+}
+
+#isRecording {
+  display: none;
+  font-size: 0.8em;
+  margin-bottom: -0.7em;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  animation: 1s;
+  -webkit-animation: blinking 1s infinite;
+}
+
+.detailTable {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.detailTable th, .detailTable td {
+  padding: 0.3em;
+  border: 1px solid black;
+}
+
+.detailTable tr:nth-child(even) > td {
+  background: rgb(235,235,235);
+}
+
+#transcript_result {
+  display: none;
+}
+
+#phraseInfo {
+  display: none;
+}
+
+#phrase {
+  display: none;
+  font-weight: 700;
+  font-size: 2em;
+  text-align: center;
+  padding: 0.5em;
+  border: 3px dotted #ddd;
+  margin-bottom: 0.5em;
+}
+
+@-webkit-keyframes blinking {
+  from {
+	color: black;
+  }
+  50% {
+	color: red;
+  }
+  to {
+	color: black;
+  }
+}
+
+.red {
+  color: #f00;
+}
+
+/* RESPONSIVE */
+@media all and (max-width: 60em) {
+	#main {
+		width: auto;
+		margin: 1em 1em;
+	}
+}
