@@ -4,6 +4,7 @@ SpeechAccuracyTest
 A simple test suite to test accuracy of the Web Speech API's SpeechRecognition.
 
 Author: Francesco Novy - contact@fnovy.com - www.fnovy.com
+
 Last Update: 03. May 2013
 
 ====================
@@ -15,8 +16,9 @@ let various users go through the test. Each user will automatically generate a r
 the end of the test, that will be sent to you via email. You can then use this data
 to optimise used speech commands.
 
-This Suite is based on the Web Speech API, which is currently only included in Google Chrome, in a webkit-prefixed version.
+This Suite is based on the Web Speech API, which is currently only included in Google Chrome, in a webkit-prefixed version. Therefore, the test will only work in Google Chrome!
 For additional information on the topic, visit:
+
 http://updates.html5rocks.com/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API
 
 
@@ -28,7 +30,7 @@ INSTRUCTION
 2a. Enter your name and email address.
 2b. Add as many phrases as you want. 16 sample phrases are included. Each phrase must have a "type", which can be "word", "phrase" or "sentence".
 3. Upload the whole folder to your website.
-4. Send users to www.yourwebsite.com/test_folder/
+4. Send users to www.yourwebsite.com/folder_where_test_is/
 5. Thats it! You will receive a report for each finished test. The report will be anonymised and contain all important data.
 
 ====================
