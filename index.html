@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Web Speech API Accuracy Test</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Web Speech API Accuracy Test</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 		
 	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="res/main.css">
   </head>
   <body>
-		<div id="allow_hint_box">Please allow microphone access!</div>
-		<div id="error_popup"></div>
-		<div id="main">
+	<div id="allow_hint_box">Please allow microphone access!</div>
+	<div id="error_popup"></div>
+	<div id="main">
 
-			<h1>Web Speech API - Accuracy Test</h1>
+	  <h1>Web Speech API - Accuracy Test</h1>
 			
-			<p>
-			  The purpose of this test is to find out how accurate certain phrases
-			  can be detected by the Web Speech API. The test is conducted by <span id='conductorName'></span>.
-			  If you have questions or want to give feedback, please write an email to <a id='conductorEmail'></a>.
-			</p>
-			<p>
-			  Please not that an anonymised report of your test will automatically be sent to the conductor!
-			</p>
-			<h2>Instructions</h2>
-			<p>
-				Press the "Start Test" button and start reading the words and sentences that appear. 
-				Speech recognition can take a few seconds.
-				If the phrase was understood correctly, it will automatically change to the next phrase.
-				If the phrase was not correct, the recognized phrase will be displayed. 
-				You can then try again. If it does not work repeatedly, you can choose to skip this
-				phrase or select "Nearly correct" if it has at least recognized a similar phrase.
-			</p>
-			<p>
-			  Please try to do the test as fast as possible, but keep in mind that
-			  it works best if you talk clearly and not too fast.
-			</p>
-			<p>
-			  After you pressed the "Start Test" button, you will have to allow microphone access. Usually there will be a dialog toolbar under your URL-bar!
-			  The test will start immedeatly after you allowed microphone access. 
-			</p>
-			
-			<button id="startButton" style="display: block;" type="button" onclick="startRecognition();">Start Test</button>
-			
-			<p id="phraseInfo">Please read this phrase:</p>
-			<div id="phrase"></div>
-			
-			<div id="isRecording">Recording...</div>
-			<div id="test_transcript_output" ></div>
-			
-			<div id="transcript_result"><h2>Results:</h2></div>
-			
-			<div id="buttonGroup" style="display: none;">
-			  <button type="button" onclick="nearlyCorrect();">Nearly correct</button>
-			  <button type="button" onclick="notCorrect();">Not correct (Skip phrase)</button>
-			</div>
+	  <p>
+		The purpose of this test is to find out how accurate certain phrases
+		can be detected by the Web Speech API. The test is conducted by <span id='conductorName'></span>.
+		If you have questions or want to give feedback, please write an email to <a id='conductorEmail'></a>.
+	  </p>
+	  <p>
+		Please not that an anonymised report of your test will automatically be sent to the conductor!
+	  </p>
+	  <h2>Instructions</h2>
+	  <p>
+		  Press the "Start Test" button and start reading the words and sentences that appear. 
+		  Speech recognition can take a few seconds.
+		  If the phrase was understood correctly, it will automatically change to the next phrase.
+		  If the phrase was not correct, the recognized phrase will be displayed. 
+		  You can then try again. If it does not work repeatedly, you can choose to skip this
+		  phrase or select "Nearly correct" if it has at least recognized a similar phrase.
+	  </p>
+	  <p>
+		Please try to do the test as fast as possible, but keep in mind that
+		it works best if you talk clearly and not too fast.
+	  </p>
+	  <p>
+		After you pressed the "Start Test" button, you will have to allow microphone access. Usually there will be a dialog toolbar under your URL-bar!
+		The test will start immedeatly after you allowed microphone access. 
+	  </p>
+
+	  <button id="startButton" style="display: block;" type="button" onclick="startRecognition();">Start Test</button>
+
+	  <p id="phraseInfo">Please read this phrase:</p>
+	  <div id="phrase"></div>
+
+	  <div id="isRecording">Recording...</div>
+	  <div id="test_transcript_output" ></div>
+
+	  <div id="transcript_result"><h2>Results:</h2></div>
+
+	  <div id="buttonGroup" style="display: none;">
+		<button type="button" onclick="nearlyCorrect();">Nearly correct</button>
+		<button type="button" onclick="notCorrect();">Not correct (Skip phrase)</button>
+	  </div>
 		
-		</div>
+	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
 	<script src='config.js' type="text/javascript"></script>
 	<script src='webspeech.js' type="text/javascript"></script>

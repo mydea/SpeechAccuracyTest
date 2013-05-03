@@ -3,7 +3,7 @@ var name = "Your Name";
 var mailto = 'test@email.com';
 
 /* Set the language you want to record in. */
-var lang = "en_UK";
+var lang = "en_UK"; // Use correct lang-codes! i.e. en_UK, en_US, de_DE, ...
 
 /* The phrases you want to test */
 var phrases = [
