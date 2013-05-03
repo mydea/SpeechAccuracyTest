@@ -34,6 +34,12 @@ INSTRUCTION
 5. Thats it! You will receive a report for each finished test. The report will be anonymised and contain all important data.
 
 ====================
+DEMO
+====================
+To see how it works, visit http://www.fnovy.com/projects/webspeechtest.
+
+
+====================
 CREDITS
 ====================
 This test has been created by Francesco Novy. Included libraries are:

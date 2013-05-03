@@ -1,6 +1,6 @@
 /*  Please enter your full name and your email address */
-var name = "Francesco Novy"
-var mailto = 'francesconovy@gmail.com';
+var name = "Your Name";
+var mailto = 'test@email.com';
 
 /* The phrases you want to test */
 var phrases = [
