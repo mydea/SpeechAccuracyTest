@@ -1,54 +1,66 @@
 /* DO NOT CHANGE */
 var curPhrase = -1;
-var time = 0;	  
-setInterval(updateTime, 10);
+var time = 0;
+var isRecording = false; // Could be used to check if audio is currently being processed
+setInterval(updateTime, 10); // Get time
+var recognition;
 
-/* INIT */
-for(var i=0; i<phrases.length;i++) {
-  phrases[i].time = 0;
-  phrases[i].tries = 0;
-  phrases[i].phraseInput = '';
-  phrases[i].status = 0;
+window.onload = init;
+
+/* 
+ * Initialises the phrases and the speech recognition
+ */
+function init() {
+  for(var i=0; i<phrases.length;i++) {
+	phrases[i].time = 0;
+	phrases[i].tries = 0;
+	phrases[i].phraseInput = '';
+	phrases[i].status = 0;
+  }
+
+  document.getElementById("conductorName").innerHTML = name;
+  document.getElementById("conductorEmail").innerHTML = mailto;
+  document.getElementById("conductorEmail").setAttribute("href", "mailto:"+mailto);
+
+  if (!('webkitSpeechRecognition' in window)) {
+	  // This browser does not support webkitSpeechRecognition!
+	  document.getElementById("test_transcript_output").innerHTML = "<span class='red'>Sorry, but this browser has no support for webkitSpeechRecognition!</span>";
+	  document.getElementById("startButton").setAttribute("disabled", "disabled");
+	  showError("no-support");
+  } else {
+	  recognition = new webkitSpeechRecognition();
+	  recognition.continuous = true; // We want to keep recording
+	  recognition.lang = lang; // i.e. en_UK, de_DE, ...
+
+	  recognition.onstart = function() { 
+		  startNow();
+		  isRecording = true;
+	  };
+	  recognition.onresult = checkResult;
+	  recognition.onerror = function(event) { 
+		console.log(event.error);
+		  document.getElementById("test_transcript_output").innerHTML = "<span class='red'>Sorry, but an error occured!</span>";
+		  showError(event.error);
+	  };
+	  recognition.onend = function() { 
+		  isRecording = false;
+	  };
+  }
 }
 
-document.getElementById("conductorName").innerHTML = name;
-document.getElementById("conductorEmail").innerHTML = mailto;
-document.getElementById("conductorEmail").setAttribute("href", "mailto:"+mailto);
-
-if (!('webkitSpeechRecognition' in window)) {
-	// This browser does not support webkitSpeechRecognition!
-	document.getElementById("test_transcript_output").innerHTML = "Sorry, but this browser has no support for webkitSpeechRecognition!";
-	document.getElementById("startButton").setAttribute("disabled", "disabled");
-	showError("no-support");
-} else {
-	var recognition = new webkitSpeechRecognition();
-	recognition.continuous = true; // We want to keep recording
-	recognition.lang = "en_UK";
-	var isRecording = false;
-
-	recognition.onstart = function() { 
-		startNow();
-		isRecording = true;
-	};
-	recognition.onresult = checkResult;
-	recognition.onerror = function(event) { 
-	  console.log(event.error);
-		document.getElementById("test_transcript_output").innerHTML = "<span class='red'>Sorry, but an error occured!</span>";
-		showError(event.error);
-	};
-	recognition.onend = function() { 
-		isRecording = false;
-	};
-}
-/* INIT END */
-
-
+/* 
+ * This function starts the recognition. 
+ * This means that the browser will now ask the user for permission. 
+ */
 function startRecognition() {
   recognition.start();
   document.getElementById("allow_hint_box").style.display = "block";
   document.getElementById("startButton").style.display = "none";
 }
 
+/*
+ * This function is started when the user has given his permission.
+ */
 function startNow() {
   document.getElementById("allow_hint_box").style.display = "none";
 
@@ -60,6 +72,9 @@ function startNow() {
   nextPhrase();
 }
 
+/*
+ * This function is started when recognition is ended.
+ */
 function endRecognition() {
   recognition.stop();
   document.getElementById("isRecording").style.display = "none";
@@ -69,6 +84,9 @@ function endRecognition() {
   document.getElementById("phraseInfo").style.display = "none";
 }
 
+/*
+ * Gets called if the current phrase is correct
+ */
 function correct() {
   var transcript = document.getElementById("test_transcript_output").innerHTML;
   if(transcript !== "") {
@@ -78,16 +96,25 @@ function correct() {
   }
 }
 
+/* 
+ * Gets called if the current phrase is nearly correct
+ */
 function nearlyCorrect() {
   phrases[curPhrase].status = 1;
   nextPhrase();
 }
 
+/*
+ * Gets called if the current phrase is not correct
+ */
 function notCorrect() {
   phrases[curPhrase].status = 0;
   nextPhrase();
 }
 
+/*
+ * Shows the next specified phrase.
+ */
 function nextPhrase() {
   if(curPhrase >= 0) {
 	phrases[curPhrase].time = time;
@@ -106,7 +133,10 @@ function nextPhrase() {
   document.getElementById("phrase").innerHTML = phrases[curPhrase].phrase;
 }
 
-
+/*
+ * This function is called when the client receives a result from the web service.
+ * This function also checks if the result is correct
+ */
 function checkResult(event) {
 	var transcript = "";
 
@@ -124,6 +154,10 @@ function checkResult(event) {
 
 }
 
+/*
+ * This function handles the end of the test. 
+ * It ends speech recognition and displays the result.
+ */
 function finished() {
   endRecognition();
 
@@ -187,10 +221,16 @@ sendEmail();
 
 }
 
+/*
+ * Simply used to measure the time that is needed for a phrase
+ */
 function updateTime() {
   time += 10;
 }
 
+/*
+ * Sends an email with the report to the definied address.
+ */
 function sendEmail() {
 
   var correct = 0;
@@ -252,10 +292,16 @@ function sendEmail() {
 
 }
 
+/*
+ * Could be used to display a success-message.
+ */
 function mailSuccess() {
   console.log("Mail has been sent");
 }
 
+/*
+ * Translates an error-code to a human-readable error message.
+ */
 function translateError(error) {
   if(error === "no-speech") 
 	return "No speech has been detected. Please click the following button to try again: <br/><br/><button type='button' onclick='location.reload();'>Try again</button>";
@@ -275,6 +321,9 @@ Please ensure that a microphone is installed and that  microphone settings are c
 
 }
 
+/* 
+ * Outputs an error message as an overlay.
+ */
 function showError(errorCode) {
   var error = translateError(errorCode);
   

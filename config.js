@@ -2,6 +2,9 @@
 var name = "Your Name";
 var mailto = 'test@email.com';
 
+/* Set the language you want to record in. */
+var lang = "en_UK";
+
 /* The phrases you want to test */
 var phrases = [
   {

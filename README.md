@@ -29,6 +29,7 @@ INSTRUCTION
 2. Edit the config.js:
 2a. Enter your name and email address.
 2b. Add as many phrases as you want. 16 sample phrases are included. Each phrase must have a "type", which can be "word", "phrase" or "sentence".
+	Hint: Do not use punctuation marks! They cannot be processed.
 3. Upload the whole folder to your website.
 4. Send users to www.yourwebsite.com/folder_where_test_is/
 5. Thats it! You will receive a report for each finished test. The report will be anonymised and contain all important data.
