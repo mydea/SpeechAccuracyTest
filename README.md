@@ -5,7 +5,9 @@ A simple test suite to test accuracy of the Web Speech API's SpeechRecognition.
 
 Author: Francesco Novy - contact@fnovy.com - www.fnovy.com
 
-Last Update: 03. May 2013
+Last Update: 05. May 2013
+
+Version 1.00
 
 ====================
 BASIC INFORMATION
@@ -39,6 +41,10 @@ DEMO
 ====================
 To see how it works, visit http://www.fnovy.com/projects/webspeechtest.
 
+====================
+CHANGELOG
+====================
+v1.00: Added support for different vendor prefixes
 
 ====================
 CREDITS

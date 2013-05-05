@@ -22,13 +22,28 @@ function init() {
   document.getElementById("conductorEmail").innerHTML = mailto;
   document.getElementById("conductorEmail").setAttribute("href", "mailto:"+mailto);
 
-  if (!('webkitSpeechRecognition' in window)) {
+  var hasSupport = window.SpeechRecognition || 
+                        window.webkitSpeechRecognition || 
+                        window.mozSpeechRecognition || 
+                        window.oSpeechRecognition || 
+                        window.msSpeechRecognition;
+  if (!hasSupport) {
 	  // This browser does not support webkitSpeechRecognition!
 	  document.getElementById("test_transcript_output").innerHTML = "<span class='red'>Sorry, but this browser has no support for webkitSpeechRecognition!</span>";
 	  document.getElementById("startButton").setAttribute("disabled", "disabled");
 	  showError("no-support");
   } else {
-	  recognition = new webkitSpeechRecognition();
+	  if(window.SpeechRecognition)
+		recognition = new SpeechRecognition();
+	  else if(window.webkitSpeechRecognition)
+		recognition = new webkitSpeechRecognition();
+	  else if(window.mozSpeechRecognition)
+		recognition = new mozSpeechRecognition();
+	  else if(window.oSpeechRecognition)
+		recognition = new oSpeechRecognition();
+	  else if(window.msSpeechRecognition)
+		recognition = new msSpeechRecognition();
+	  
 	  recognition.continuous = true; // We want to keep recording
 	  recognition.lang = lang; // i.e. en_UK, de_DE, ...
 
