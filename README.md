@@ -25,7 +25,7 @@ http://updates.html5rocks.com/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-
 
 
 ====================
-INSTRUCTION
+INSTRUCTIONS
 ====================
 1. Download the whole package.
 2. Edit the config.js:
@@ -34,7 +34,7 @@ INSTRUCTION
 	Hint: Do not use punctuation marks! They cannot be processed.
 3. Upload the whole folder to your website.
 4. Send users to www.yourwebsite.com/folder_where_test_is/
-5. Thats it! You will receive a report for each finished test. The report will be anonymised and contain all important data.
+5. That's it! You will receive a report for each finished test. The report will be anonymised and contain all important data.
 
 ====================
 DEMO
